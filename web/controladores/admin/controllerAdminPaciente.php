@@ -9,6 +9,8 @@ error_reporting(E_ALL);
 if(empty($_POST)){
     $mostrar = new Paciente();
     $respuesta = $mostrar->mostrarTodoPaciente();
+    print_r('no va');
+    exit;
     echo json_encode($respuesta);
 }
 else if($_POST['tipo']=="mostrarUno"){
