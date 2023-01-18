@@ -10,7 +10,6 @@ if(empty($_POST)){
     $mostrar = new Paciente();
     $respuesta = $mostrar->mostrarTodoPaciente();
     $respuesta= json_encode($respuesta);
-    print_r($respuesta);
     echo json_encode($respuesta);
 }
 else if($_POST['tipo']=="mostrarUno"){
