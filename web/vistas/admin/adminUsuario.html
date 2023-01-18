@@ -1,0 +1,83 @@
+<div class="container">
+    <button type="button" class="btn btn-primary Anadir" id="Anadir" data-bs-toggle='modal' data-bs-target='#anadirModal'><i class='bx bxs-user-plus'></i></button>
+
+
+    <table id="mostrarPacientes">
+
+    </table>
+
+    <div class="modal" tabindex="-1" id="editarModal" class="editarModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="POST" name="anadir-form" id="editar-form" class="editar-form">
+                        <div class="mb-3">
+                            <label for="dni-modificar" class="form-label">DNI</label>
+                            <input type="text" class="dni-modificar form-control" name="dni-modificar" id="dni-modificar" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombre-modificar" class="form-label">Nombre</label>
+                            <input type="text" class="nombre-modificar form-control" name="nombre-modificar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password-modificar" class="form-label">Password</label>
+                            <input type="password" class="password-modificar form-control" name="password-modificar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mail-modificar" class="form-label"> Email</label>
+                            <input type="mail" class="mail-modificar form-control" name="mail-modificar">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary Editar" id="Editar">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="anadirModal" class="anadirModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Añadir Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="POST" name="anadir-form" id="anadir-form" class="anadir-form">
+                    <div class="mb-3">
+                        <label for="dni-crear" class="form-label">DNI</label>
+                        <input type="text" class="dni-crear form-control" name="dni-crear" id="dni-crear">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre-crear" class="form-label">Nombre</label>
+                        <input type="text" class="nombre-crear form-control" name="nombre-crear">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password-crear" class="form-label">Contraseña</label>
+                        <input type="password" class="password-crear form-control" name="password-crear">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mail-crear" class="form-label"> Email</label>
+                        <input type="mail" class="mail-crear form-control" name="mail-crear">
+                    </div>
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <input type="submit" class="btn btn-primary Editar" id="Editar">Guardar</button> -->
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary Anadir-boton" id="Anadir-boton">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

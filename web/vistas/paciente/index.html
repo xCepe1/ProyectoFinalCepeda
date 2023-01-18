@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <script src="../../librerias/js/jquery-3.6.0.min.js"></script>
+    <script src="../../librerias/js/datatables.min.js"></script>
+    <link rel="stylesheet" href="../../librerias/css/bootstrap.min.css" class="">
+    <link rel="stylesheet" href="../../librerias/css/datatables.min.css" class="">
+    <script src="../../librerias/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../librerias/jqUI/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../../librerias/datepiker/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="../../librerias/jqUI/jquery-ui.css">
+    <link rel="stylesheet" href="../../librerias/datepiker/css/bootstrap-datepicker.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <nav class="sidebar">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                  </span>
+
+                <div class="text logo-text">
+                    <span class="name">Hospital</span>
+                    <span class="profession">Portal Paciente</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <li class="search-box">
+                    <i class='bx bx-search icon '></i>
+                    <div id="buscador" class="buscador">
+                        <input type="text" placeholder="Buscar..." class="search" id="search">
+                    </div>
+                </li>
+
+                <ul class="menu-links p-0">
+                    <li class="nav-link accionador">
+                        <a href="#" class="pedir">
+                            <img src='../../images/cita.svg' class="icon">
+                            <span class="text nav-text">Pedir cita</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link accionador">
+                        <a href="#" class="futuro">
+                            <i class='bx bx-calendar icon'></i>
+                            <span class="text nav-text">Proximas citas</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link accionador">
+                        <a href="#" class="historial">
+                            <i class='bx bx-history icon'></i>
+                            <span class="text nav-text">Historial medico</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="../../index.html">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Salir</span>
+                    </a>
+                </li>
+
+                <!-- <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li> -->
+
+            </div>
+        </div>
+
+    </nav>
+
+    <section class="home">
+        <div id="contenido"></div>
+    </section>
+
+    <script src="../../js/paciente.js">
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>

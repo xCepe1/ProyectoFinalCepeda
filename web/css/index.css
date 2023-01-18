@@ -1,0 +1,128 @@
+footer{
+    background-color: rgb(32, 32, 63);
+    color: white;
+}
+
+
+.miNombre{
+    text-decoration: none;
+    color: orange;
+}
+
+
+
+#tituloH1{
+    font-family: 'Graduate', cursive;
+    
+}
+
+#pacifico{
+    font-family: 'Pacifico', cursive;
+}
+
+#morado{
+    background-color: #a4f2f9;
+}
+
+ iframe{
+    width: 60vw;
+    height: 60vh;
+} 
+
+.comentarios{
+   
+    border: solid;
+    border-width: 1px;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+border-color: #bfc3c7;
+}
+
+#quiero{
+     height: 40px; 
+}
+
+#curriculo button{
+    color: red;
+}
+
+#curriculo a{
+    color: red;
+}
+
+.aqui{
+    font-weight: 100;
+}
+
+.bi-linkedin, .bi-twitter, .bi-globe{
+    color: gray;
+}
+
+.bi-linkedin:hover{
+
+    color: blueviolet;
+}
+
+.bi-twitter:hover{
+    color: dodgerblue;
+}
+
+.bi-globe:hover{
+    color: rgb(14, 126, 14);
+}
+#fondo{
+    background-position: center center;
+
+/* Para que la imagen de fondo no se repita */
+
+background-repeat: no-repeat;
+
+/* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+
+background-attachment: fixed;
+
+/* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+
+background-size: cover;
+
+/* Se muestra un color de fondo mientras se está cargando la imagen
+
+de fondo o si hay problemas para cargarla */
+
+ }
+ #imagen{
+    float: left;
+    overflow: hidden;
+ }
+
+ div.portalLayoutCell {
+    display: table-cell;
+    vertical-align: top;
+    padding: 0;
+}
+.currentContent {
+    margin: 1.5em 0 0 0;
+    position: relative;
+}
+.centrosprivados.quironsalud .cmBodyContentChildrens .contentName, .centrosprivados.quironsalud .cmBodyContentChildrens .cmContentItem > a.cmContentLink, .centrosprivados.quironsalud .cmBodyContentChildrens .contentName a.cmContentLink {
+    color: #142433;
+    text-decoration: none;
+}
+.modelEspecialidad{
+    box-sizing: border-box;
+    display: block;
+    font-size: 1.2em;
+    color: #919191;
+    text-align: -webkit-match-parent;
+    list-style-type: none;
+}
+ul.cmContentList, ul.cmContentMultipleList {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+}
+#encontrar{
+    padding: 2rem;
+    background-color: #a4f2f9;
+}

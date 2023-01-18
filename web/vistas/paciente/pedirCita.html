@@ -1,0 +1,54 @@
+<div id="container align-center">
+    <form method="post" action="#" class="form-inline citacion" role="form" id="citacion">
+        <div class="form-group">
+
+            <label for="muestra">Elija una opcion</label>
+            <select id="muestra" name="muestra" class="form-select opcion_date">
+                <option value="proxima">La m&aacute;s proxima</option>
+                <option value="personalizada">Personalizar</option>
+            </select>
+            <div id="date">
+                <p>Elija Fecha: <input type="text" id="datepicker" class="datepicker" data-provide="datepicker" name="fechas" readonly disabled="disabled"></p>
+            </div>
+        </div>
+        <!-- DEPENDIENDO DE LA ACCION SELECCIONADA HAY QUE MOSTRAR UN DATEPICKER O NO-->
+
+        <div class="form-group">
+            <p>Elija una aseguradora</p>
+            <div class="form-check aseguradora" id="aseguradora">
+                <input type="radio" id="html" name="fav_language" value="HTML">
+                <label for="html">DKV</label><br>
+                <input type="radio" id="css" name="fav_language" value="CSS">
+                <label for="css">Allianz</label><br>
+                <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+                <label for="javascript">Mapfre</label>
+                <!-- TENGO QUE CREARLO DINAMICO-->
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="especialidad">Elija una especialidad</label>
+            <select id="especialidad" name="especialidad" class="form-select">
+            <option value="personalizada">Clinica</option>
+            <option value="proxima">La m&aacute;s proxima</option>
+        </select>
+        </div>
+        <div class="form-group">
+            <label for="doctor">Elija un doctor (OPCIONAL)</label>
+            <select id="doctor" name="doctor" class="form-select">
+            <option value="personalizada">JOSE MANUEL PEREA</option>
+            <option value="proxima">La m&aacute;s proxima</option>
+        </select>
+            <!--TENGO QUE HACERLO DINAMICO -->
+        </div>
+        <div class="form-group">
+            <button value="Enviar" id="enviar" name="Enviar" class="btn btn-primary">Buscar Citas</button>
+
+        </div>
+    </form>
+</div>
+
+
+<table id="pedirCitas" class="pedirCitas">
+
+</table>

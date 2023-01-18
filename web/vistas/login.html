@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../librerias/js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../librerias/css/bootstrap.min.css" class="">
+    <script src="../librerias/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/login.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <header>
+        <a href="../index.html">Volver</a>
+    </header>
+    <div class="login-box">
+        <h2>Hospital Quir&oacute;n</h2>
+        <form method="post" action="#" class="form-login" id="form-login">
+            <div class="user-box grupo__dni" id="grupo__dni">
+                <div class="formulario__grupo-input">
+                    <input type="text" name="dni" required="" />
+                    <label for="dni">DNI </label>
+                </div>
+                <p class="formulario__input-error "> Introduzca un dni v&aacute;lido</p>    
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" required="" />
+                <label for="password">Contraseña: </label>
+            </div>
+            <p>¿No eres usuario? <strong><a href="registro.html" class="registro">Reg&iacute;strate ahora</a></strong></p>
+
+            <button name="iniciar " value="Iniciar Sesion " class="btn btn-primary iniciar" id="iniciar">Iniciar sesion</button>
+
+        </form>
+    </div>
+    <script type="text/javascript " src="../js/login.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>

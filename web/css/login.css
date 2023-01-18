@@ -1,0 +1,130 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#ffffff, rgb(112, 112, 112));
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: white;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: rgb(39, 39, 39);
+    text-align: center;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: black;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: black;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+    top: -20px !important;
+    left: 0 !important;
+    color: black !important;
+    font-size: 12px !important;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+    top: -20px !important;
+    left: 0 !important;
+    color: black !important;
+    font-size: 12px !important;
+}
+
+.login-box form a.boton {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: black;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+}
+
+.login-box button:hover {
+    background: rgb(236, 236, 236);
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.);
+}
+
+.login-box button {
+    border: solid black 1px;
+    color: black;
+    background: rgb(255, 255, 255);
+}
+
+.formulario__input-error {
+	font-size: 12px;
+	margin-bottom: 0;
+	display: none;
+    margin-bottom: 5px;
+}
+.formulario__input-error-activo {
+	display: block;
+    color:red;
+}
+
+.formulario__grupo-correcto .formulario__validacion-estado {
+	color: #1ed12d;
+	opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__label {
+	color: #bb2929;
+}
+
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+	color: #bb2929;
+	opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__input {
+	border: 3px solid #bb2929;
+}

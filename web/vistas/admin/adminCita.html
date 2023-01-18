@@ -1,0 +1,83 @@
+<div class="container">
+    <button type="button" class="btn btn-primary Anadir" id="Anadir" data-bs-toggle='modal' data-bs-target='#anadirModal'><i class='bx bxs-user-plus'></i></button>
+
+
+    <table id="mostrarCita">
+
+    </table>
+
+    <div class="modal" tabindex="-1" id="editarModal" class="editarModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Cita</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="POST" name="editar-form" id="editar-form" class="editar-form">
+                        <div class="mb-3">
+                            <label for="id-modificar" class="form-label">ID</label>
+                            <input type="text" class="id-modificar form-control" name="id-modificar" id="id-modificar" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fecha-modificar" class="form-label">fecha</label>
+                            <input type="datetime-local" class="fecha-modificar form-control" name="fecha-modificar" step="1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="paciente-modificar" class="form-label">paciente</label>
+                            <input type="text" class="paciente-modificar form-control" name="paciente-modificar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="doctor-modificar" class="form-label"> doctor</label>
+                            <input type="text" class="doctor-modificar form-control" name="doctor-modificar">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary Editar" id="Editar">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="anadirModal" class="anadirModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Añadir Cita</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="POST" name="anadir-form" id="anadir-form" class="anadir-form">
+                    <div class="mb-3">
+                        <label for="id-crear" class="form-label">ID</label>
+                        <input type="text" class="id-crear form-control" name="id-crear" id="id-crear">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha-crear" class="form-label">fecha</label>
+                        <input type="datetime-local" class="fecha-crear form-control" name="fecha-crear" step="1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="paciente-crear" class="form-label">paciente</label>
+                        <input type="text" class="paciente-crear form-control" name="paciente-crear">
+                    </div>
+                    <div class="mb-3">
+                        <label for="doctor-crear" class="form-label"> doctor</label>
+                        <input type="doctor" class="doctor-crear form-control" name="doctor-crear">
+                    </div>
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <input type="submit" class="btn btn-primary Editar" id="Editar">Guardar</button> -->
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary Anadir-boton" id="Anadir-boton">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

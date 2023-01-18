@@ -1,0 +1,141 @@
+<div class="container">
+    <button type="button" class="btn btn-primary Anadir" id="Anadir" data-bs-toggle='modal'
+        data-bs-target='#anadirModal'><i class='bx bxs-user-plus'></i></button>
+
+
+    <table id="mostrarDoctor">
+
+    </table>
+
+    <div class="modal" tabindex="-1" id="editarModal" class="editarModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Doctor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="POST" name="anadir-form" id="editar-form" class="editar-form">
+                        <div class="mb-3">
+                            <label for="dni-modificar" class="form-label">DNI</label>
+                            <input type="text" class="dni-modificar form-control" name="dni-modificar"
+                                id="dni-modificar" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombre-modificar" class="form-label">Nombre</label>
+                            <input type="text" class="nombre-modificar form-control" name="nombre-modificar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="especialidad-modificar" class="form-label">Especialidad</label>
+                            <input type="text" class="especialidad-modificar form-control"
+                                name="especialidad-modificar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mail-modificar" class="form-label"> Email</label>
+                            <input type="mail" class="mail-modificar form-control" name="mail-modificar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="horarioDesde-modificar" class="form-label"> De </label>
+                            <select id="horarioDesde-modificar" name="horarioDesde-modificar" class="form-select opcion_date">
+                                <option value="lunes">Lunes</option>
+                                <option value="martes">Martes</option>
+                                <option value="miercoles">Miercoles</option>
+                                <option value="jueves">Jueves</option>
+                                <option value="viernes">Viernes</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="time" class="horarioEntrada-modificar form-control"
+                                name="horarioEntrada-modificar" step="1">
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="horarioHasta-modificar" class="form-label"> Hasta </label>
+                            <select id="horarioHasta-modificar" name="horarioHasta-modificar" class="form-select opcion_date">
+                                <option value="lunes">Lunes</option>
+                                <option value="martes">Martes</option>
+                                <option value="miercoles">Miercoles</option>
+                                <option value="jueves">Jueves</option>
+                                <option value="viernes">Viernes</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <input type="time" class="horarioSalida-modificar form-control"
+                                name="horarioSalida-modificar" step="1">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary Editar" id="Editar">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="anadirModal" class="anadirModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Añadir Doctor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="POST" name="anadir-form" id="anadir-form" class="anadir-form">
+                    <div class="mb-3">
+                        <label for="dni-crear" class="form-label">DNI</label>
+                        <input type="text" class="dni-crear form-control" name="dni-crear" id="dni-crear">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre-crear" class="form-label">Nombre</label>
+                        <input type="text" class="nombre-crear form-control" name="nombre-crear">
+                    </div>
+                    <div class="mb-3">
+                        <label for="especialidad-crear" class="form-label">Especialidad</label>
+                        <input type="especialidad" class="especialidad-crear form-control" name="especialidad-crear">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mail-crear" class="form-label"> Email</label>
+                        <input type="mail" class="mail-crear form-control" name="mail-crear">
+                    </div>
+                    <div class="mb-3">
+                        <select id="horarioDesde-anadir" name="horarioDesde-anadir" class="form-select opcion_date">
+                            <option value="lunes">Lunes</option>
+                            <option value="martes">Martes</option>
+                            <option value="miercoles">Mi&eacute;rcoles</option>
+                            <option value="jueves">Jueves</option>
+                            <option value="viernes">Viernes</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="time" class="horarioSalida-anadir form-control"
+                            name="horarioEntrada-anadir" step="1">
+                    </div>
+                    <div class="mb-3">
+                        <select id="horarioHasta-anadir" name="horarioHasta-anadir" class="form-select opcion_date">
+                            <option value="lunes">Lunes</option>
+                            <option value="martes">Martes</option>
+                            <option value="miercoles">Miercoles</option>
+                            <option value="jueves">Jueves</option>
+                            <option value="viernes">Viernes</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <input type="time" class="horarioEntrada-anadir form-control"
+                            name="horarioSalida-anadir" step="1">
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary Anadir-boton" id="Anadir-boton">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

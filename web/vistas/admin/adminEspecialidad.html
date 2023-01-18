@@ -1,0 +1,67 @@
+<div class="container">
+    <button type="button" class="btn btn-primary Anadir" id="Anadir" data-bs-toggle='modal' data-bs-target='#anadirModal'><i class='bx bxs-user-plus'></i></button>
+
+
+    <table id="mostrarEspecialidad">
+
+    </table>
+
+    <div class="modal" tabindex="-1" id="editarModal" class="editarModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Especialidad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="POST" name="editar-form" id="editar-form" class="editar-form">
+                        <div class="mb-3">
+                            <label for="nombre-modificar" class="form-label">Nombre</label>
+                            <input type="text" class="nombre-modificar form-control" name="nombre-modificar" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="aseguradora-modificar" class="form-label">aseguradora</label>
+                            <input type="text" class="aseguradora-modificar form-control" name="aseguradora-modificar" id="aseguradora-modificar" readonly>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary Editar" id="Editar">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="anadirModal" class="anadirModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Añadir Especialidad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="POST" name="anadir-form" id="anadir-form" class="anadir-form">
+                    <div class="mb-3">
+                        <label for="nombre-crear" class="form-label">Nombre</label>
+                        <input type="text" class="nombre-crear form-control" name="nombre-crear">
+                    </div>
+                    <div class="mb-3">
+                        <label for="aseguradora-crear" class="form-label">aseguradora</label>
+                        <input type="text" class="aseguradora-crear form-control" name="aseguradora-crear" id="aseguradora-crear">
+                    </div>
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <input type="submit" class="btn btn-primary Editar" id="Editar">Guardar</button> -->
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary Anadir-boton" id="Anadir-boton">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

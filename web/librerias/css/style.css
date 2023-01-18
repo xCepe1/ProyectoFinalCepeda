@@ -1,0 +1,163 @@
+ body {
+     font-family: Georgia, 'Times New Roman', Times, serif;
+     color: #333;
+     font: size 1.2rem;
+     line-height: 1.6em;
+     margin: 0;
+ }
+ 
+ h1 {
+     font-size: 2rem;
+     line-height: 1.3em;
+ }
+ 
+ p {
+     margin-bottom: 1.6em;
+ }
+ 
+ header .container {
+     width: 75%;
+     max-width: 850px;
+ }
+ 
+ main {
+     padding-top: 10rem;
+ }
+ 
+ header {
+     background: #333;
+     color: white;
+     padding: 2rem 0;
+     position: fixed;
+     left: 0;
+     top: 0;
+     width: 100%;
+     display: flex;
+ }
+ 
+ header a,
+ header p {
+     color: white;
+     text-decoration: none;
+ }
+ 
+ .logo-nav-container {
+     display: flex;
+     align-items: center;
+     flex-wrap: wrap;
+     z-index: 2;
+     width: 85%
+ }
+ 
+ .navigation {
+     margin-left: 5%;
+ }
+ 
+ .navigation ul {
+     margin-left: auto;
+     margin-right: auto;
+     margin: 0;
+     padding: 0;
+     list-style: none;
+ }
+ 
+ .navigation ul li {
+     display: inline-block;
+ }
+ 
+ .navigation ul li a {
+     display: block;
+     padding: 0.5rem 1rem;
+     transition: all 0.4s linear;
+     border-radius: 5px;
+ }
+ 
+ .navigation ul li a:hover {
+     background-color: gray;
+ }
+ 
+ .logo {
+     letter-spacing: 15px;
+     font: size 1.3em;
+     width: 15%;
+ }
+ 
+ .footer {
+     background: #f2f2f2;
+     padding: 4rem o;
+     text-align: center;
+     margin-top: 6rem;
+ }
+ 
+ .menu-icon {
+     display: none;
+ }
+ 
+ .usuarios a {
+     display: block;
+     text-align: right;
+     margin-right: 2rem;
+     transition: all 0.4s linear;
+     border-radius: 5px;
+ }
+ 
+ .usuarios p {
+     color: green;
+     font-size: small;
+     text-align: right;
+     margin-right: 2rem;
+     margin-bottom: 0.6px;
+     margin-top: 1px;
+ }
+ 
+ .usuarios {
+     width: 15%;
+     float: right;
+     display: block;
+ }
+ 
+ .usuarios a:hover {
+     background-color: gray;
+ }
+ 
+ @media only screen and (max-width: 875px) {
+     .navigation {
+         width: 100%;
+         margin-top: 1rem;
+     }
+     .menu-icon {
+         margin-left: 30%;
+         margin-right: 30%;
+         text-align: center;
+         display: block;
+         cursor: pointer;
+     }
+     .navigation ul.show {
+         display: block;
+     }
+     .navigation ul li {
+         display: inline-block;
+     }
+     .mostrar {
+         display: none;
+     }
+     .navigation ul li a {
+         display: block;
+         padding: 0.5rem 0rem;
+         transition: all 0.4s linear;
+         border-radius: 5px;
+     }
+     .navigation ul li a:hover {
+         background-color: gray;
+     }
+     .logo {
+         letter-spacing: 15px;
+         font: size 1.3em;
+     }
+     .footer {
+         background: #f2f2f2;
+         padding: 4rem o;
+         text-align: center;
+         margin-top: 6rem;
+     }
+ }
