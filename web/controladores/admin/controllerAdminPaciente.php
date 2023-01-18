@@ -7,8 +7,6 @@ error_reporting(E_ALL);
 
  
 if(empty($_POST)){
-     print_r('No va');
-    exit;
     $mostrar = new Paciente();
     $respuesta = $mostrar->mostrarTodoPaciente();
     echo json_encode($respuesta);
