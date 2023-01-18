@@ -9,7 +9,10 @@ error_reporting(E_ALL);
 if(empty($_POST)){
     $mostrar = new Paciente();
     $respuesta = $mostrar->mostrarTodoPaciente();
-    print_r(json_encode($respuesta));
+        foreach ($respuesta as $k => $v) {
+            $respuesta[$k] = utf8ize($v);
+        }
+
     echo json_encode($respuesta);
 }
 else if($_POST['tipo']=="mostrarUno"){
