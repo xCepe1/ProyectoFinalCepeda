@@ -87,12 +87,13 @@ class Paciente
         return $datos;
     }
     function mostrarTodoPaciente(){
-        $sql="SELECT * from usuario";
+        $sql="SELECT * from usuario;";
         $resultado=$this->mysqli->query($sql);
         $fechas=array();
         while ($row = $resultado->fetch_assoc()) {
             $fechas[] = $row;
         }
+        print_r($fechas);
         foreach ($fechas as $key => $value) {
 
             $editar = array("E" => "<button type='button' onclick='rellenarModal(this.id,`{$this->accion}`)' class='btn btn-sm btn-link edicion' id='{$value['dni']}' data-bs-toggle='modal' data-bs-target='#editarModal' accion='{$this->accion}'><i class='bx bxs-edit'></i></button>");
