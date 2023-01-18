@@ -122,7 +122,6 @@ class Paciente
             'columnsDefs' => $columnsDefs,
             // 'combos' => $this->combos
         );
-        print_r($datos);
         return $datos;
     }
 
