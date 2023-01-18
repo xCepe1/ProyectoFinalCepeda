@@ -9,9 +9,7 @@ error_reporting(E_ALL);
 if(empty($_POST)){
     $mostrar = new Paciente();
     $respuesta = $mostrar->mostrarTodoPaciente();
-    print_r($respuesta);
-    $respuestas= json_encode($respuesta, JSON_FORCE_OBJECT);
-    echo $respuestas;
+    echo json_encode($respuesta);
 }
 else if($_POST['tipo']=="mostrarUno"){
     $mostrar = new Paciente($_POST["dni"]);
