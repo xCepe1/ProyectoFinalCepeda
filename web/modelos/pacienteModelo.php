@@ -93,7 +93,6 @@ class Paciente
         while ($row = $resultado->fetch_assoc()) {
             $fechas[] = $row;
         }
-        print_r($fechas);
         foreach ($fechas as $key => $value) {
 
             $editar = array("E" => "<button type='button' onclick='rellenarModal(this.id,`{$this->accion}`)' class='btn btn-sm btn-link edicion' id='{$value['dni']}' data-bs-toggle='modal' data-bs-target='#editarModal' accion='{$this->accion}'><i class='bx bxs-edit'></i></button>");
@@ -123,6 +122,7 @@ class Paciente
             'columnsDefs' => $columnsDefs,
             // 'combos' => $this->combos
         );
+        print_r($datos);
         return $datos;
     }
 
