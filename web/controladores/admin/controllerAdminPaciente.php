@@ -12,6 +12,8 @@ if(empty($_POST)){
         foreach ($respuesta as $k => $v) {
             $respuesta[$k] = utf8ize($v);
         }
+ print_r($respuesta)
+  
 
     echo json_encode($respuesta);
 }
