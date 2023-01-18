@@ -1,11 +1,9 @@
 <?php
-session
 if(is_dir("../modelos")){
     require_once "../modelos/loginModelo.php" ;
 } else{
     require_once "../../modelos/loginModelo.php" ;
 }
-session_start();
 $rol=$_SESSION['rol'];
 if($rol=='Paciente'){
     require_once "../conexion/db.php";
