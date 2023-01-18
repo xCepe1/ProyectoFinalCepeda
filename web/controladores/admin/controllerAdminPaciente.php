@@ -9,6 +9,7 @@ error_reporting(E_ALL);
 if(empty($_POST)){
     $mostrar = new Paciente();
     $respuesta = $mostrar->mostrarTodoPaciente();
+    $respuesta= json_encode($respuesta);
     print_r($respuesta);
     echo json_encode($respuesta);
 }
