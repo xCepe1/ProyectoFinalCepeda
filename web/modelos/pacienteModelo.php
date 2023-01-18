@@ -4,6 +4,8 @@ if(is_dir("../modelos")){
 } else{
     require_once "../../modelos/loginModelo.php" ;
 }
+    print_r($_SESSION);
+    exit;
 $rol=$_SESSION['rol'];
 if($rol=='Paciente'){
     require_once "../conexion/db.php";
