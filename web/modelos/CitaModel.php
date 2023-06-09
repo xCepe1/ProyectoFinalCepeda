@@ -33,12 +33,6 @@ class Citas
     public $accion="Citas";//es para identificarlo
     
 
-        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
-        // comprueba que no falle la conexion
-        if ($mysqli->connect_error) {
-            die("Connection failed: " . $mysqli->connect_error);
-        }
-
     public function __construct($tipo='',$datepicker="", $diagnostico="", $paciente1='',
      $doctor1='', $fecha1='', $diagnostico1='')
     { 
@@ -88,6 +82,7 @@ class Citas
 
     public function obtenerCitas()
     {
+        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $doctor=$this->doctor['dni'];
         $sql = "SELECT
                     *
@@ -195,6 +190,7 @@ class Citas
         return $datos;
     }
     public function insertarCita(){
+        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $dniPaciente=$_SESSION['dni'];
         $dniDoctor=$_POST['doctor'];
         $fecha=$_POST['fecha'];
@@ -205,6 +201,7 @@ class Citas
         return "exito";
     }
     public function borrarCita(){
+        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         if($_SESSION['rol']=='Admin'){
             $dniDoctor=$_POST['doctore'];
             $dniPaciente=$_POST['paciente'];
@@ -220,6 +217,7 @@ class Citas
     }
     function mostrarUnaCita()
     {
+        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $sql = "SELECT * FROM cita where id = '{$this->id}';";
         $resultado = $this->mysqli->query($sql);
         $datos = array();
@@ -230,6 +228,7 @@ class Citas
     }
     function mostrarCitas()
     {
+        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $sql = "SELECT * FROM cita;";
         $resultado = $this->mysqli->query($sql);
         $datos = array();
@@ -345,6 +344,7 @@ class Citas
     }
     function mostrarPasCitas()
     {   
+        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $dia=date("Y-m-d H:i:s");
         $dni=$_SESSION['dni']; 
         if($_SESSION['rol']=='Paciente'){
@@ -410,6 +410,7 @@ class Citas
         return $datos;
     }
     function citaActual(){
+        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
             $dia=date("Y-m-d H:i:s");
             $dia1=date("Y-m-d H:i:s", strtotime('-30 minutes', strtotime($dia)));
             $dia2=date("Y-m-d H:i:s", strtotime('+30 minutes', strtotime($dia)));
@@ -469,6 +470,7 @@ class Citas
     
     function cambiarCita()//Antes hay que mostrar citas disponibles 
     {
+        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $sql = "UPDATE cita SET paciente = '{$this->paciente}'
             WHERE fecha= '{$this->fecha}' and doctor = '{$this->doctor}'";
         $this->mysqli->query($sql);
