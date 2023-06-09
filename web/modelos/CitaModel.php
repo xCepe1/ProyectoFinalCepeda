@@ -41,7 +41,7 @@ class Citas
         $this->fecha1=$fecha1;
         $this->diagnostico1=$diagnostico1;
         $con = new Connection();
-        $this->mysqli = $con->con();
+        $dbcon = new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
     if(isset($_POST['muestra'])){
         if($_POST['muestra']=='proxima'){
             $pref_desde=date("Y-m-d");
