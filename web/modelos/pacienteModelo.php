@@ -113,7 +113,7 @@ class Paciente
         return $datos;
     }
     function mostrarTodoPaciente(){
-        $sql="SELECT * from usuario";
+        $sql="SELECT * from usuario;";
         $resultado=$this->mysqli->query($sql);
         $fechas=array();
         while ($row = $resultado->fetch_assoc()) {

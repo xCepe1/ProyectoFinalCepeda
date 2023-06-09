@@ -17,10 +17,10 @@ class Connection
      */
     function __construct()
     {
-        $this->ip = 'localhost';
-        $this->usuario = 'root';
-        $this->password = 'usuario';
-        $this->bd = 'proyectocepeda';
+        $this->ip = 'eu-cdbr-west-03.cleardb.net';
+        $this->usuario = 'bd8e1296f31184';
+        $this->password = '4bdfc4d6';
+        $this->bd = 'heroku_2d31625326ba35a';
     }
 
 
