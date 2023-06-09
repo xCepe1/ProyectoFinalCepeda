@@ -30,8 +30,14 @@ class Citas
     public $doctor1;
     public $fecha1;
     public $diagnostico1;
-    public $mysqli;
     public $accion="Citas";//es para identificarlo
+    
+
+        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
+        // comprueba que no falle la conexion
+        if ($mysqli->connect_error) {
+            die("Connection failed: " . $mysqli->connect_error);
+        }
 
     public function __construct($tipo='',$datepicker="", $diagnostico="", $paciente1='',
      $doctor1='', $fecha1='', $diagnostico1='')
@@ -41,8 +47,9 @@ class Citas
         $this->paciente1=$paciente1;
         $this->fecha1=$fecha1;
         $this->diagnostico1=$diagnostico1;
-        $con = new Connection();
-        $dbcon = new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
+        $this->mysqli=$mysqli;
+        
+        
     if(isset($_POST['muestra'])){
         if($_POST['muestra']=='proxima'){
             $pref_desde=date("Y-m-d");
