@@ -30,6 +30,7 @@ class Citas
     public $doctor1;
     public $fecha1;
     public $diagnostico1;
+    public $mysqli;
     public $accion="Citas";//es para identificarlo
 
     public function __construct($tipo='',$datepicker="", $diagnostico="", $paciente1='',
