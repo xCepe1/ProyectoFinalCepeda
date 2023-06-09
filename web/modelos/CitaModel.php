@@ -41,7 +41,6 @@ class Citas
         $this->paciente1=$paciente1;
         $this->fecha1=$fecha1;
         $this->diagnostico1=$diagnostico1;
-        $this->mysqli=$mysqli;
         
         
     if(isset($_POST['muestra'])){
@@ -197,7 +196,7 @@ class Citas
         $diagnostico=$_POST['diagnostico'];
 
         $sql="INSERT INTO cita (paciente,doctor,fecha,diagnostico) VALUES ('$dniPaciente','$dniDoctor','$fecha','$diagnostico')";  
-        $respuesta=$this->mysqli->query($sql); 
+        $respuesta=$mysqli->query($sql); 
         return "exito";
     }
     public function borrarCita(){
@@ -212,14 +211,14 @@ class Citas
         }
         $fecha=$_POST['fecha'];
         $sql="DELETE FROM cita where doctor='$dniDoctor' and paciente='$dniPaciente' and fecha='$fecha'";
-        $this->mysqli->query($sql);   
+        $mysqli->query($sql);   
         return "exito";
     }
     function mostrarUnaCita()
     {
         $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $sql = "SELECT * FROM cita where id = '{$this->id}';";
-        $resultado = $this->mysqli->query($sql);
+        $resultado = $mysqli->query($sql);
         $datos = array();
         while ($row = $resultado->fetch_assoc()) {
             $datos[] = $row;
@@ -230,7 +229,7 @@ class Citas
     {
         $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $sql = "SELECT * FROM cita;";
-        $resultado = $this->mysqli->query($sql);
+        $resultado = $mysqli->query($sql);
         $datos = array();
         while ($row = $resultado->fetch_assoc()) {
             $datos[] = $row;
@@ -298,7 +297,7 @@ class Citas
             INNER JOIN doctor ON cita.doctor = doctor.dni
           where cita.doctor='$dni' and fecha>'$dia'"; 
         }
-        $resultado = $this->mysqli->query($sql);  
+        $resultado = $mysqli->query($sql);  
         if (mysqli_num_rows($resultado) == 0){
             return "vacio";
         }
@@ -375,7 +374,7 @@ class Citas
             INNER JOIN doctor ON cita.doctor = doctor.dni
           where cita.doctor='$dni' and fecha<'$dia'"; 
         } 
-        $resultado = $this->mysqli->query($sql);
+        $resultado = $mysqli->query($sql);
         if (mysqli_num_rows($resultado) == 0){
             return "vacio";
         }
@@ -427,7 +426,7 @@ class Citas
             INNER JOIN usuario ON cita.paciente = usuario.dni
             INNER JOIN doctor ON cita.doctor = doctor.dni
           where cita.doctor='$dni' and fecha between '$dia1' and '$dia2';";    
-            $resultado = $this->mysqli->query($sql);
+            $resultado = $mysqli->query($sql);
             if (mysqli_num_rows($resultado) == 0){
                 return "vacio";
             }
@@ -473,7 +472,7 @@ class Citas
         $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $sql = "UPDATE cita SET paciente = '{$this->paciente}'
             WHERE fecha= '{$this->fecha}' and doctor = '{$this->doctor}'";
-        $this->mysqli->query($sql);
+        $mysqli->query($sql);
         return "exito";
     }
     function modificarCita()//tengo que pasarle un parametro anterior
