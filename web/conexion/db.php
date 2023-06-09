@@ -18,9 +18,9 @@ class Connection
     function __construct()
     {
         $this->ip = 'eu-cdbr-west-03.cleardb.net';
-        $this->usuario = 'bd8e1296f31184';
-        $this->password = '4bdfc4d6';
-        $this->bd = 'heroku_2d31625326ba35a';
+        $this->usuario = 'b779dddf5208ba';
+        $this->password = 'c33f6bda';
+        $this->bd = 'heroku_319148137defb00';
     }
 
 
