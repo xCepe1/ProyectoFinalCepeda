@@ -17,7 +17,8 @@ else if($_POST['tipo']=="mostrarUno"){
     echo json_encode($respuesta);
 }
 else if($_POST['tipo']=="modificar"){
-    $modificar= new Paciente($_POST['dni'],$_POST['nombre-modificar'],$_POST['password-modificar'],$_POST['mail-modificar']);
+    $modificar= new Paciente($_POST['dni'],$_POST['nombre-modificar'],$_POST['password-modificar'],$_POST['mail-modificar'],
+    $_POST['fecha-modificar'],$_POST['telefono-modificar']);
     $respuesta= $modificar->modificarPaciente();
     echo json_encode($respuesta);
 }
@@ -27,7 +28,8 @@ else if($_POST['tipo']=="eliminar"){
     echo json_encode($respuesta);
 }
 else if($_POST['tipo']=="anadir"){
-    $crear= new Paciente($_POST['dni-crear'],$_POST['nombre-crear'],$_POST['password-crear'],$_POST['mail-crear']);
+    $crear= new Paciente($_POST['dni-crear'],$_POST['nombre-crear'],$_POST['password-crear'],$_POST['mail-crear'],
+    $_POST['fecha-crear'],$_POST['telefono-crear']);
     $respuesta= $crear->crearPaciente();
     echo json_encode($respuesta);
 }

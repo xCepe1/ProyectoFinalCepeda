@@ -23,15 +23,19 @@ class Paciente
     public $password;
     public $email;
     public $mysqli;
+    public $edad;
+    public $telefono;
     public $accion="Paciente";
 
-    function __construct($dni = "", $nombre = "", $password = "", $email = "")
+    function __construct($dni = "", $nombre = "", $password = "", $email = "",$edad='', $telefono='')
     {
 
         $this->dni = $dni;
         $this->nombre = $nombre;
         $this->password = $password;
         $this->email = $email;
+        $this->edad = $edad;
+        $this->telefono = $telefono;
         $con = new Connection();
         $this->mysqli = $con->con();
     }
@@ -41,7 +45,7 @@ class Paciente
         $sql = "SELECT * from usuario where dni = '{$this->dni}'";
         $resultado = $this->mysqli->query($sql);
         if (mysqli_num_rows($resultado) == 0) {
-            $sql = "INSERT INTO usuario (dni, nombre,password, email) VALUES ('{$this->dni}','{$this->nombre}','{$this->password}','{$this->email}')";
+            $sql = "INSERT INTO usuario (dni, nombre,password, email) VALUES ('{$this->dni}','{$this->nombre}','{$this->password}','{$this->email}','{$this->edad}','{$this->telefono}')";
             $resultado = $this->mysqli->query($sql);
             return "exito";
         } else {
@@ -50,17 +54,36 @@ class Paciente
     }
     function modificarPaciente()
     {
-        $sql = "select * from usuario where dni = '{$this->dni}'";
+        if($_SESSION['rol']=='Paciente'){
+           $dni=$_SESSION['dni'];
+            $sql = "select * from usuario where dni = '{$dni}'";
         $resultado = $this->mysqli->query($sql);
         if (mysqli_num_rows($resultado) != 0) {
-            $sql = "UPDATE usuario SET nombre = '{$this->nombre}', 
-            password = '{$this->password}', email = '{$this->email}'
-            WHERE dni= '{$this->dni}'";
+            $sql = "UPDATE usuario SET nombre = '{$_POST['nombre-modificarPaciente']}', 
+            password = '{$_POST['password-modificarPaciente']}', email = '{$_POST['mail-modificarPaciente']}'
+            , fecha_nacimiento = '{$_POST['fecha-modificarPaciente']}' , telefono_movil = '{$_POST['telefono-modificarPaciente']}'
+            WHERE dni= '{$dni}'"; 
             $resultado = $this->mysqli->query($sql);
             return "exito";
         } else {
             return "No existe el Paciente";
         }
+        }
+        else{
+            $sql = "select * from usuario where dni = '{$this->dni}'";
+            $resultado = $this->mysqli->query($sql);
+            if (mysqli_num_rows($resultado) != 0) {
+                $sql = "UPDATE usuario SET nombre = '{$this->nombre}', 
+                password = '{$this->password}', email = '{$this->email}'
+                , fecha_nacimiento = '{$this->edad}' , telefono_movil = '{$this->telefono}'
+                WHERE dni= '{$this->dni}'";
+                $resultado = $this->mysqli->query($sql);
+                return "exito";
+            } else {
+                return "No existe el Paciente";
+            }
+        }
+
     }
     function eliminarPaciente()
     {
@@ -75,6 +98,9 @@ class Paciente
         }
     }
     function mostrarPaciente(){
+        if(!isset($_POST['dni'])){
+            $this->dni=$_SESSION['dni'];
+        }  
         $sql ="SELECT * from usuario where dni = '{$this->dni}'";
         $resultado=$this->mysqli->query($sql);
         if(mysqli_num_rows($resultado)==0){
@@ -104,7 +130,7 @@ class Paciente
 
         $i = 0;
 
-        $visibleColumns = ['dni','nombre','email','E','B'];
+        $visibleColumns = ['dni','nombre','email', 'fecha_nacimiento','telefono_movil','E','B'];
         $bool = false;
 
         foreach ($columns as $key => $value) {

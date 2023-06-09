@@ -22,8 +22,14 @@ else if($_POST['tipo']=="eliminar"){
     echo json_encode($respuesta);
 }
 else if($_POST['tipo']=="anadir"){
-    $crear= new Citas($_POST['id-crear'],$_POST['paciente-crear'],$_POST['doctor-crear'],$_POST['fecha-crear']);
+    $crear= new Citas($_POST['paciente-crear'],$_POST['doctor-crear'],$_POST['fecha-crear']);
     $respuesta= $crear->insertarCita();
+    echo json_encode($respuesta);
+}
+else if($_POST['tipo']=="modificar"){
+    $modificar= new Citas($_POST['doctor'],$_POST['paciente'],$_POST['fecha'],$_POST['diagnostico']
+    ,$_POST['doctor1'],$_POST['paciente1'],$_POST['fecha1'],$_POST['diagnostico1']);
+    $respuesta= $modificar->modificarCita();
     echo json_encode($respuesta);
 }
 

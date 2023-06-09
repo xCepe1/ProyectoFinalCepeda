@@ -37,14 +37,19 @@ function getDatos() {
                     showConfirmButton: true
                   })
             } else if (response != 1) {
-                Swal.fire({
+                  var partes = response.split(";");
+                  var nombre = partes[0];
+                  var rol = partes[1];
+
+                  Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Hola ' + response + ' bienvenido a Quiron Salud',
+                    title: 'Hola ' + nombre + ' bienvenido a Quiron Salud',
                     timer: 3000
                   });
+                sessionStorage.setItem('usuario', nombre);
+                sessionStorage.setItem('rol', rol);
                 window.location.href = '../index.html';
-                sessionStorage.setItem('usuario', response);
             } else {
                 Swal.fire({
                     position: 'top-end',

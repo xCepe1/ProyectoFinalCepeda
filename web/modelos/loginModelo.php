@@ -30,10 +30,26 @@ class Login
         $sql = "select dni, nombre, password from usuario where dni = '{$this->dni}'";
         $resultado = $this->mysqli->query($sql); 
         $users = $resultado->fetch_assoc();
-        if (empty($users) || $users['password'] != $this->password) {
-            return "No existe el usuario";
+
+
+        if (empty($users) || $users['password'] != $this->password){
+            $sql = "select dni, nombre, password from doctor where dni = '{$this->dni}'";
+            $resultado = $this->mysqli->query($sql); 
+            $users = $resultado->fetch_assoc();
+            if(empty($users) || $users['password'] != $this->password){
+                return "No existe el usuario";
+            }
+            else{
+                $_SESSION['usuario'] = $users['nombre'];
+                $_SESSION['dni']=$users['dni'];
+                $_SESSION['rol']="Doctor";
+                $datos=$_SESSION['usuario'] .';'.$_SESSION['rol'];
+                return $datos;
+            }
+
+                
         } else {
-          
+            $_SESSION['dni']=$users['dni'];
             $_SESSION['usuario'] = $users['nombre'];
             if($users['dni']=='30247579A'){
                 $_SESSION['rol']="Admin";

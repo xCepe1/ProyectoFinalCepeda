@@ -12,13 +12,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.0/css/all.css">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
     integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
     integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
     crossorigin="anonymous"></script>
-    <script src="librerias/js/jquery-3.6.0.min.js"></script>
+    <script src="./librerias/js/jquery-3.6.0.min.js"></script>
 
 
   <title>Hospital Quiron</title>
@@ -150,12 +151,29 @@
       <div class="row">
         <div class="col-sm-8 offset-sm-2">
           <p>
-            Tenemos un sistema de red de citas en el que puedes seleccionar nuestro
+            Nuestra p&aacute;gina web sirve para muchas personas, proveemos servicio tanto a pacientes como medicos para poder gestionar tus citas.
           </p>
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-8 offset-sm-2">
+        <h4> ¿Eres paciente?</h4>
+        <p class="lead">En ese caso, solo realizando un registro de tus datos como dni, fecha de nacimiento, telefono y nombre podrá tener un usuario dentro de la plataforma para poder acceder a la seccion de citas, Incluso podra modificar sus datos en el futuro. Dentro podrá tanto pedir citas en la que segun la aseguradora en la que este podra acceder a distintos tipos de servicios medicos, donde puede elegir fecha y hora incluso el doctor. <strong>CONOCE A NUESTROS PROFESIONALES</strong>. 
+        </p>
+        <p class="lead">Además podra ver las citas que tiene proximamente para que no se le olvide o anularla si al final no puede acurdir a nuestra cita, tambien puede ver las citas pasadas que ha tenido y observar un breve diagnostico del doctor que la realizo asi como la fecha y hora</p>
+      </div>
+    </div>
   </section>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <h4> ¿Eres doctor?</h4>
+      <p class="lead">En nuestra plataforma que se le dara de alta por una peticion a el administrador, podrá modificar su horario, ver que citas va a tener, añadir un diagnostico en las citas que tiene en vivo y tener un registro de todas las citas que ha tenido y con quien.  
+      </p>
+      <p class="lead"></p>
+    </div>
+  </div>
+</section>
 
   <section class="wrap " id="what-learn">
     <div class="container text-center " id="encontrar">
@@ -172,13 +190,153 @@
     </div>
   </section>
 
+  <footer>
+    <button class="btn btn-danger redes" type="button" onclick="location.href='https://www.youtube.com/@quironsalud6389'">
+      <i class="fa-brands fa-youtube sociales"></i>
+    </button>
+    <button class="btn btn-info redes" type="button" onclick="location.href='https://twitter.com/quironsalud'">
+      <i class="fa-brands fa-twitter text-white sociales"></i>
+    </button>
+    <button class="btn btn-primary  redes" type="button" onclick="location.href='https://www.facebook.com/quironsalud.es'">
+      <i class="fa-brands fa-facebook sociales"></i>
+    </button>
+    <button class="btn btn-danger  redes" type="button" onclick="location.href='https://api.whatsapp.com/send?phone=645640640'">
+      <i class="fa-brands fa-instagram sociales"></i>
+    </button>
+    <button class="btn btn-success  redes" type="button" onclick="location.href='https://www.instagram.com/quironsalud'">
+      <i class="fa-brands fa-whatsapp sociales"></i>
+    </button>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js">
+      
+    </script>
+  </footer>
+
+  <div class="modal" tabindex="-1" id="editarModalPaciente" class="editarModalPaciente">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="POST" name="editar-formPaciente" id="editar-formPaciente" class="editars-formPaciente">
+                    <div class="mb-3">
+                        <label for="dni-modificarPaciente" class="form-label">DNI</label>
+                        <input type="text" class="dni-modificarPaciente form-control" name="dni-modificarPaciente" id="dni-modificarPaciente" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre-modificarPaciente" class="form-label">Nombre</label>
+                        <input type="text" class="nombre-modificarPaciente form-control" name="nombre-modificarPaciente">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password-modificarPaciente" class="form-label">Password</label>
+                        <input type="password" class="password-modificarPaciente form-control" name="password-modificarPaciente">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mail-modificarPaciente" class="form-label"> Email</label>
+                        <input type="mail" class="mail-modificarPaciente form-control" name="mail-modificarPaciente">
+                    </div>
+                    <div class="mb-3">
+                      <label for="fecha-modificarPaciente" class="form-label"> Fecha de nacimiento</label>
+                      <input type="date" class="fecha-modificarPaciente form-control" name="fecha-modificarPaciente">
+                  </div>
+                  <div class="mb-3">
+                    <label for="telefono-modificarPaciente" class="form-label"> Telefono</label>
+                    <input type="text" class="telefono-modificarPaciente form-control" name="telefono-modificarPaciente">
+                </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary botonPaciente" id="botonPaciente">Guardar</button>
+</div>
+          </div>
+        </div>
+      </div>
+
+            <div class="modal" tabindex="-1" id="editarModalDoctor" class="editarModalDoctor">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title">Editar Doctor</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <form action="#" method="POST" name="editar-formDoctor" id="editar-formDoctor" class="editar-formDoctor">
+                              <div class="mb-3">
+                                  <label for="dni-modificarDoctor" class="form-label">DNI</label>
+                                  <input type="text" class="dni-modificarDoctor form-control" name="dni-modificarDoctor"
+                                      id="dni-modificarDoctor" disabled>
+                              </div>
+                              <div class="mb-3">
+                                  <label for="nombre-modificarDoctor" class="form-label">Nombre</label>
+                                  <input type="text" class="nombre-modificarDoctor form-control" name="nombre-modificarDoctor">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="especialidad-modificarDoctor" class="form-label">Especialidad</label>
+                                  <input type="text" class="especialidad-modificarDoctor form-control"
+                                      name="especialidad-modificarDoctor">
+                              </div>
+                              <div class="mb-3">
+                                <label for="password-modificarDoctor" class="form-label">Password</label>
+                                <input type="password" class="password-modificarDoctor form-control" name="password-modificarDoctor">
+                            </div>
+                              <div class="mb-3">
+                                <label for="password-modificarDoctor" class="form-label">Confirmar Password</label>
+                                <input type="password" class="password1-modificarDoctor form-control" name="password1-modificarDoctor">
+                            </div>
+                              <div class="mb-3">
+                                  <label for="mail-modificarDoctor" class="form-label"> Email</label>
+                                  <input type="mail" class="mail-modificarDoctor form-control" name="mail-modificarDoctor">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="horarioDesde-modificarDoctor" class="form-label"> De </label>
+                                  <select id="horarioDesde-modificarDoctor" name="horarioDesde-modificarDoctor" class="form-select opcion_date">
+                                      <option value="lunes">Lunes</option>
+                                      <option value="martes">Martes</option>
+                                      <option value="miercoles">Miercoles</option>
+                                      <option value="jueves">Jueves</option>
+                                      <option value="viernes">Viernes</option>
+                                  </select>
+                              </div>
+      
+                              <div class="mb-3">
+                                  <input type="time" class="horarioEntrada-modificarDoctor form-control"
+                                      name="horarioEntrada-modificarDoctor" step="1">
+      
+                              </div>
+                              <div class="mb-3">
+                                  <label for="horarioHasta-modificarDoctor" class="form-label"> Hasta </label>
+                                  <select id="horarioHasta-modificarDoctor" name="horarioHasta-modificarDoctor" class="form-select opcion_date">
+                                      <option value="lunes">Lunes</option>
+                                      <option value="martes">Martes</option>
+                                      <option value="miercoles">Miercoles</option>
+                                      <option value="jueves">Jueves</option>
+                                      <option value="viernes">Viernes</option>
+                                  </select>
+                              </div>
+                              <div class="mb-3">
+                                  <input type="time" class="horarioSalida-modificarDoctor form-control"
+                                      name="horarioSalida-modificarDoctor" step="1">
+                              </div>
+                          </form>
+      
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary botonDoctor" id="botonDoctor">Guardar</button>
+          </div>
+          </div>
+        </div>
+      </div>
+
 
   <script src="js/index.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
-
+<script src="./librerias/js/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
-
-

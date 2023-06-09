@@ -5,7 +5,7 @@ if(is_dir("../modelos")){
     require_once "../../modelos/loginModelo.php" ;
 }
 $rol=$_SESSION['rol'];
-if($rol=='Paciente'){
+if($rol=='Paciente'||$rol=='Doctor'){
     require_once "../conexion/db.php";
 }  else if($rol=='Admin'){
     require_once "../../conexion/db.php";
@@ -26,12 +26,13 @@ class Doctor
     public $horarioHasta;
     public $horarioEntrada;
     public $horarioSalida;
+    public $password;
     public $mysqli;
     public $accion="Doctor";
 
-    function __construct($dni="", $nombre="", $especialidad="", $email="",$horarioDesde="",$horarioHasta="",$horarioEntrada="",$horarioSalida="")
+    function __construct($dni="", $nombre="", $especialidad="", $email="",$horarioDesde="",$horarioHasta="",$horarioEntrada="",$horarioSalida="",$password='')
     {
-
+        $this->password=$password;
         $this->dni = $dni;
         $this->nombre = $nombre;
         $this->especialidad = $especialidad;
@@ -62,17 +63,35 @@ class Doctor
     }
     function modificarDoctor()
     {
-        $sql = "select * from doctor where dni = '{$this->dni}'";
-        $resultado = $this->mysqli->query($sql);
-        if (mysqli_num_rows($resultado) != 0) {
-            $sql = "UPDATE doctor SET nombre = '{$this->nombre}', 
-            especialidad = '{$this->especialidad}', email = '{$this->email}', horarioHasta ='{$this->horarioHasta}',horarioDesde ='{$this->horarioDesde}', horarioEntrada ='{$this->horarioEntrada}', horarioSalida ='{$this->horarioSalida}'
-            WHERE dni= '{$this->dni}'";  
+        if($_SESSION['rol']=='Doctor'){
+            $dni=$_SESSION['dni'];
+            $sql = "select * from doctor where dni = '{$dni}'";
             $resultado = $this->mysqli->query($sql);
-            return "exito";
-        } else {
-            return "No existe el doctor";
+            if (mysqli_num_rows($resultado) != 0) {
+                $sql = "UPDATE doctor SET nombre = '{$this->nombre}', 
+                especialidad = '{$this->especialidad}',password='{this->password}', email = '{$this->email}', horarioHasta ='{$this->horarioHasta}',horarioDesde ='{$this->horarioDesde}', horarioEntrada ='{$this->horarioEntrada}', horarioSalida ='{$this->horarioSalida}'
+                WHERE dni= '{$dni}'";   
+                $resultado = $this->mysqli->query($sql);
+                return "exito";
+            } else {
+                return "No existe el doctor";
+            }
         }
+        else{
+            $sql = "select * from doctor where dni = '{$this->dni}'";
+            $resultado = $this->mysqli->query($sql);
+            if (mysqli_num_rows($resultado) != 0) {
+                $sql = "UPDATE doctor SET nombre = '{$this->nombre}', 
+                especialidad = '{$this->especialidad}',password='{this->password}', email = '{$this->email}', horarioHasta ='{$this->horarioHasta}',horarioDesde ='{$this->horarioDesde}', horarioEntrada ='{$this->horarioEntrada}', horarioSalida ='{$this->horarioSalida}'
+                WHERE dni= '{$this->dni}'";  
+                $resultado = $this->mysqli->query($sql);
+                return "exito";
+            } else {
+                return "No existe el doctor";
+            }
+        }
+        
+
     }
     function eliminarDoctor()
     {
@@ -87,6 +106,9 @@ class Doctor
         }
     }
     function mostrarDoctor(){
+        if(!isset($_POST['dni'])){
+            $this->dni=$_SESSION['dni'];
+        }
         $sql ="SELECT * from doctor where dni = '{$this->dni}'";
         $resultado=$this->mysqli->query($sql);
         if(mysqli_num_rows($resultado)==0){

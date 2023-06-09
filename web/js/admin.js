@@ -158,10 +158,22 @@ function modificar(accion) {
                 value: aseguradora,
             });
         } else if (accion == "Citas") {
-            let id = $(".id-modificar").val();
-            data = data.concat({
-                name: "id",
-                value: id,
+            var cita = localStorage.getItem('citasValores');
+            data= data.concat({
+                name:'doctor1',
+                value: cita.doctor,
+            });
+            data= data.concat({
+                name:'paciente1',
+                value: cita.paciente,
+            });
+            data= data.concat({
+                name:'fecha1',
+                value: cita.fecha,
+            });
+            data= data.concat({
+                name:'diagnostico1',
+                value: cita.diagnostico,
             });
 
         }
@@ -889,10 +901,13 @@ function rellenarModal(id, accion, segundo) {
         success: function (response) {
             let datos = response[0];
             if (accion == "Paciente") {
+                console.log(datos);
                 $(".dni-modificar").val(datos.dni);
                 $(".nombre-modificar").val(datos.nombre);
                 $(".password-modificar").val(datos.password);
                 $(".mail-modificar").val(datos.email);
+                $(".telefono-modificar").val(datos.telefono_movil);
+                $(".fecha-modificar").val(datos.fecha_nacimiento);
             } else if (accion == "Doctor") {
                 $(".dni-modificar").val(datos.dni);
                 $(".nombre-modificar").val(datos.nombre);
@@ -911,6 +926,7 @@ function rellenarModal(id, accion, segundo) {
                 $(".numero-modificar").val(datos.numero_contacto);
                 $(".email-modificar").val(datos.email);
             } else if (accion == "Citas") {
+                localStorage.setItem('citasValores', datos);
                 let fecha= datos.fecha;
                 fecha=fecha.split(" ");
                 let fechas= fecha[0]+"T"+fecha[1]; 

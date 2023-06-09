@@ -16,7 +16,7 @@ else if($_POST['tipo']=="mostrarUno"){
     echo json_encode($respuesta);
 }
 else if($_POST['tipo']=="modificar"){   
-    $modificar= new Doctor($_POST['dni'],$_POST['nombre-modificar'],$_POST['especialidad-modificar'],$_POST['mail-modificar'],$_POST['horarioDesde-modificar'],$_POST['horarioHasta-modificar'],$_POST['horarioEntrada-modificar'],$_POST['horarioSalida-modificar']);
+    $modificar= new Doctor($_POST['dni'],$_POST['password-modificar'],$_POST['nombre-modificar'],$_POST['especialidad-modificar'],$_POST['mail-modificar'],$_POST['horarioDesde-modificar'],$_POST['horarioHasta-modificar'],$_POST['horarioEntrada-modificar'],$_POST['horarioSalida-modificar']);
     $respuesta= $modificar->modificarDoctor();
     echo json_encode($respuesta);
 }

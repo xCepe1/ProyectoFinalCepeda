@@ -90,6 +90,21 @@ background-size: cover;
 de fondo o si hay problemas para cargarla */
 
  }
+
+footer{
+    display: flex !important;
+    justify-content: center!important;
+    align-items: center!important;
+}
+.redes{
+    flex: 1!important;
+    margin: 0 40px!important;
+}
+.sociales{
+    max-width: 100px!important;
+    height: auto!important; 
+    margin: 10px !important;
+}
  #imagen{
     float: left;
     overflow: hidden;

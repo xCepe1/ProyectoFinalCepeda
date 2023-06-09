@@ -4,7 +4,11 @@ if(!empty($_SESSION['rol'])){
     if($_SESSION['rol']=="Paciente"){
         header("Location: ../vistas/paciente");
 
-    } else if($_SESSION['rol']=='Admin'){
+    }
+    else if($_SESSION['rol']=="Doctor"){
+        header("Location: ../vistas/doctor");
+
+    }else if($_SESSION['rol']=='Admin'){
         header("Location: ../vistas/admin");
     } 
 }

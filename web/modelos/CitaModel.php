@@ -5,7 +5,7 @@ if(is_dir("../modelos")){
     require_once "../../modelos/loginModelo.php" ;
 }
 $rol=$_SESSION['rol'];
-if($rol=='Paciente'){
+if($rol=='Paciente'||$rol=='Doctor'){
     require_once "../conexion/db.php";
 }  else if($rol=='Admin'){
     require_once "../../conexion/db.php";
@@ -15,7 +15,7 @@ if($rol=='Paciente'){
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
 
 
 class Citas
@@ -25,10 +25,21 @@ class Citas
     public $pref_hasta;
     public $citas_ocupadas=[];
     public $id;
+    public $diagnostico;
+    public $paciente1;
+    public $doctor1;
+    public $fecha1;
+    public $diagnostico1;
     public $accion="Citas";//es para identificarlo
 
-    public function __construct($tipo='',$datepicker="")
+    public function __construct($tipo='',$datepicker="", $diagnostico="", $paciente1='',
+     $doctor1='', $fecha1='', $diagnostico1='')
     { 
+        $this->diagnostico=$diagnostico;
+        $this->doctor1=$doctor1;
+        $this->paciente1=$paciente1;
+        $this->fecha1=$fecha1;
+        $this->diagnostico1=$diagnostico1;
         $con = new Connection();
         $this->mysqli = $con->con();
     if(isset($_POST['muestra'])){
@@ -51,7 +62,7 @@ class Citas
             }
                 
         }
-    }   
+    }     
         if($_SESSION['rol']=='Paciente'){  //creamos el doctor solo cuando estemos en modo paciente y exista doctor en el post 
             if(isset($_POST['doctor'])){ //esto se hace para poder trabajar con los horarios de los doctores
                 $este=new Doctor();
@@ -69,7 +80,6 @@ class Citas
 
     public function obtenerCitas()
     {
-        
         $doctor=$this->doctor['dni'];
         $sql = "SELECT
                     *
@@ -180,8 +190,9 @@ class Citas
         $dniPaciente=$_SESSION['dni'];
         $dniDoctor=$_POST['doctor'];
         $fecha=$_POST['fecha'];
+        $diagnostico=$_POST['diagnostico'];
 
-        $sql="INSERT INTO cita (paciente,doctor,fecha) VALUES ('$dniPaciente','$dniDoctor','$fecha')";  
+        $sql="INSERT INTO cita (paciente,doctor,fecha,diagnostico) VALUES ('$dniPaciente','$dniDoctor','$fecha','$diagnostico')";  
         $respuesta=$this->mysqli->query($sql); 
         return "exito";
     }
@@ -251,7 +262,35 @@ class Citas
     {   
         $dni=$_SESSION['dni'];
         $dia=date("Y-m-d H:i:s");
-        $sql = "SELECT * FROM cita where paciente='$dni' and fecha >'$dia';";  
+        if($_SESSION['rol']=='Paciente'){
+            $sql = "SELECT
+            cita.paciente AS paciente_dni,
+            usuario.nombre AS paciente,
+            cita.doctor AS doctor_dni,
+            doctor.nombre AS doctor,
+            cita.diagnostico AS diagnostico,
+            cita.fecha As fecha
+          FROM
+            cita
+            INNER JOIN usuario ON cita.paciente = usuario.dni
+            INNER JOIN doctor ON cita.doctor = doctor.dni
+          where cita.paciente='$dni' and fecha>'$dia'"; 
+        } 
+        else if($_SESSION['rol']=='Doctor'){
+            $_SESSION['rol']='Doctor';
+            $sql = "SELECT
+            cita.paciente AS paciente_dni,
+            usuario.nombre AS paciente,
+            cita.doctor AS doctor_dni,
+            doctor.nombre AS doctor,
+            cita.diagnostico AS diagnostico,
+            cita.fecha As fecha
+          FROM
+            cita
+            INNER JOIN usuario ON cita.paciente = usuario.dni
+            INNER JOIN doctor ON cita.doctor = doctor.dni
+          where cita.doctor='$dni' and fecha>'$dia'"; 
+        }
         $resultado = $this->mysqli->query($sql);  
         if (mysqli_num_rows($resultado) == 0){
             return "vacio";
@@ -275,7 +314,7 @@ class Citas
     
             $i = 0;
     
-            $visibleColumns = ['doctor','fecha','Anular'];
+            $visibleColumns = ['doctor','paciente','fecha', 'diagnostico'];
             $bool = false;
     
 
@@ -299,8 +338,35 @@ class Citas
     function mostrarPasCitas()
     {   
         $dia=date("Y-m-d H:i:s");
-        $dni=$_SESSION['dni'];
-        $sql = "SELECT * FROM cita where paciente='$dni' and fecha < '$dia';";
+        $dni=$_SESSION['dni']; 
+        if($_SESSION['rol']=='Paciente'){
+            $sql = "SELECT
+            cita.paciente AS paciente_dni,
+            usuario.nombre AS paciente,
+            cita.doctor AS doctor_dni,
+            doctor.nombre AS doctor,
+            cita.diagnostico AS diagnostico,
+            cita.fecha As fecha
+          FROM
+            cita
+            INNER JOIN usuario ON cita.paciente = usuario.dni
+            INNER JOIN doctor ON cita.doctor = doctor.dni
+          where cita.usuario='$dni' and fecha<'$dia'"; 
+        } 
+        else if($_SESSION['rol']=='Doctor'){
+            $sql = "SELECT
+            cita.paciente AS paciente_dni,
+            usuario.nombre AS paciente,
+            cita.doctor AS doctor_dni,
+            doctor.nombre AS doctor,
+            cita.diagnostico AS diagnostico,
+            cita.fecha AS fecha
+          FROM
+            cita
+            INNER JOIN usuario ON cita.paciente = usuario.dni
+            INNER JOIN doctor ON cita.doctor = doctor.dni
+          where cita.doctor='$dni' and fecha<'$dia'"; 
+        } 
         $resultado = $this->mysqli->query($sql);
         if (mysqli_num_rows($resultado) == 0){
             return "vacio";
@@ -316,7 +382,7 @@ class Citas
 
         $i = 0;
 
-        $visibleColumns = ['doctor','fecha'];
+        $visibleColumns = ['paciente','doctor','fecha','diagnostico'];
         $bool = false;
 
         foreach ($columns as $key => $value) {
@@ -335,25 +401,78 @@ class Citas
         );  
         return $datos;
     }
-    function cambiarCita()//Antes hay que mopstrar citas disponibles 
+    function citaActual(){
+            $dia=date("Y-m-d H:i:s");
+            $dia1=date("Y-m-d H:i:s", strtotime('-30 minutes', strtotime($dia)));
+            $dia2=date("Y-m-d H:i:s", strtotime('+30 minutes', strtotime($dia)));
+            $dni=$_SESSION['dni'];
+            $sql = "SELECT
+            cita.paciente AS paciente_dni,
+            usuario.nombre AS paciente,
+            cita.doctor AS doctor_dni,
+            doctor.nombre AS doctor,
+            cita.diagnostico AS diagnostico,
+            cita.fecha AS fecha
+          FROM
+            cita
+            INNER JOIN usuario ON cita.paciente = usuario.dni
+            INNER JOIN doctor ON cita.doctor = doctor.dni
+          where cita.doctor='$dni' and fecha between '$dia1' and '$dia2';";    
+            $resultado = $this->mysqli->query($sql);
+            if (mysqli_num_rows($resultado) == 0){
+                return "vacio";
+            }
+            $datos = array();
+            while ($row = $resultado->fetch_assoc()) {
+                if(strtotime($row['fecha']) < strtotime(date("Y-m-d H:i:s"))){
+                    $datos[]=$row;
+                }
+            }  
+            $columns = array_keys($datos[0]);
+            foreach ($datos as $key => $value) { 
+                $editar = array("Escribir diagnostico" => "<button type='button' class='btn btn-sm btn-link edicion' id='{$value['dni']}' data-bs-toggle='modal' data-bs-target='#modalDiagnostico' ><i class='bx bxs-edit'></i></button>");
+                $datos[$key] = array_merge( $editar, $value);
+            }  
+            $columns = array_keys($datos[0]);
+            
+           
+    
+            $i = 0;
+    
+            $visibleColumns = ['Escribir diagnostico','paciente','doctor','fecha','diagnostico'];
+            $bool = false;
+    
+            foreach ($columns as $key => $value) {
+    
+                $bool = (in_array($value, $visibleColumns)) ? true : false;
+    
+                $columns[$key] = array('data' => $value);
+                $columnsDefs[] = array('title' => $value, 'targets' => $i, 'visible' => $bool, 'searchable' => $bool);
+                $i++;
+            }
+    
+            $datos = array(
+                'data' => $datos,
+                'columns' => $columns,
+                'columnsDefs' => $columnsDefs,
+            );  
+            return $datos;
+        }
+    
+    function cambiarCita()//Antes hay que mostrar citas disponibles 
     {
         $sql = "UPDATE cita SET paciente = '{$this->paciente}'
             WHERE fecha= '{$this->fecha}' and doctor = '{$this->doctor}'";
         $this->mysqli->query($sql);
         return "exito";
     }
-    function modificarCita()
+    function modificarCita()//tengo que pasarle un parametro anterior
     {
-        $sql = "select * from cita where paciente = '{$this->paciente}' and doctor='{$this->doctor}' and fecha='{$this->fecha}'";
-        $resultado = $this->mysqli->query($sql);
-        if (mysqli_num_rows($resultado) != 0) {
-            $sql = "UPDATE doctor SET paciente = '{$this->paciente}', 
-            doctor = '{$this->doctor}', fecha = '{$this->fecha}'}'
-            WHERE  paciente = '{$this->paciente}' and doctor='{$this->doctor}' and fecha='{$this->fecha}'";  
+            $sql = "UPDATE cita SET paciente = '{$this->paciente}', 
+            doctor = '{$this->doctor}', fecha = '{$this->fecha}'}', diagnostico='{$this->diagnostico}'
+            WHERE  paciente = '{$this->paciente1}' and doctor='{$this->doctor1}' and fecha='{$this->fecha1}'
+            and diagnostico='$this->diagnostico1'";  
             $resultado = $this->mysqli->query($sql);
             return "exito";
-        } else {
-            return "No existe el doctor";
-        }
     }
 }

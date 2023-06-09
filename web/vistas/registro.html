@@ -24,7 +24,7 @@
                     <input type="text" name="dni" required />
                     <label for="dni">DNI</label>
                 </div>
-                <p class="formulario__input-error "> Introduzca un dni v&aacute;lido</p>
+                <p class="formulario__input-error "> 8 numeros y una letra mayuscula</p>
             </div>
             <div class="user-box grupo__nombre" id="grupo__nombre">
                 <div class="formulario__grupo-input">
@@ -46,6 +46,25 @@
                     <label for="email">Email </label>
                 </div>
                 <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+            </div>
+            <div class="user-box grupo__edad" id="grupo__edad">
+                <div class="formulario__grupo-input">
+                    <input type="date" name="date" required />
+                    <label for="date">Fecha de nacimiento </label>
+                </div>
+            </div>
+            <div class="user-box grupo__telefono" id="grupo__telefono">
+                <div class="formulario__grupo-input">
+                    <input type="number" name="telefono" required />
+                    <label for="telefono">Numero de contacto</label>
+                </div>
+                <p class="formulario__input-error">introduce 9 digitos</p>
+            </div>
+            <div class="user-box grupo__direccion" id="grupo__direccion">
+                <div class="formulario__grupo-input">
+                    <input type="text" name="direccion" required />
+                    <label for="direccion">Direccion</label>
+                </div>
             </div>
             <p>¿Ya tienes cuenta? <strong><a href="login.html" class="inicio">Inicia sesi&oacute;n</a></strong></p>
 
