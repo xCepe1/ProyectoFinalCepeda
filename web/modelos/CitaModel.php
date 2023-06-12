@@ -42,6 +42,7 @@ class Citas
         $this->paciente1=$paciente1;
         $this->fecha1=$fecha1;
         $this->diagnostico1=$diagnostico1;
+        $con = new Connection();
         $this->mysqli = $con->con();
         
     if(isset($_POST['muestra'])){
