@@ -317,7 +317,12 @@ class Citas
     
             $i = 0;
     
-            $visibleColumns = ['doctor','paciente','fecha', 'diagnostico'];
+                        if($_SESSION['rol']=='Doctor'){
+                $visibleColumns = ['doctor','paciente','fecha', 'diagnostico'];
+            }
+            else{
+                $visibleColumns = ['Anular','doctor','paciente','fecha', 'diagnostico'];
+            }
             $bool = false;
     
 
