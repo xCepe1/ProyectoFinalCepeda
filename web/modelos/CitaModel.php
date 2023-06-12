@@ -20,6 +20,7 @@ error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
 
 class Citas
 {
+    public $mysqli;
     public $doctor;
     public $pref_desde;
     public $pref_hasta;
@@ -41,7 +42,7 @@ class Citas
         $this->paciente1=$paciente1;
         $this->fecha1=$fecha1;
         $this->diagnostico1=$diagnostico1;
-        
+        $this->mysqli = $con->con();
         
     if(isset($_POST['muestra'])){
         if($_POST['muestra']=='proxima'){
@@ -81,7 +82,6 @@ class Citas
 
     public function obtenerCitas()
     {
-        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $doctor=$this->doctor['dni'];
         $sql = "SELECT
                     *
@@ -189,18 +189,16 @@ class Citas
         return $datos;
     }
     public function insertarCita(){
-        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $dniPaciente=$_SESSION['dni'];
         $dniDoctor=$_POST['doctor'];
         $fecha=$_POST['fecha'];
         $diagnostico=$_POST['diagnostico'];
 
         $sql="INSERT INTO cita (paciente,doctor,fecha,diagnostico) VALUES ('$dniPaciente','$dniDoctor','$fecha','$diagnostico')";  
-        $respuesta=$mysqli->query($sql); 
+        $respuesta=$this->mysqli->query($sql); 
         return "exito";
     }
     public function borrarCita(){
-        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         if($_SESSION['rol']=='Admin'){
             $dniDoctor=$_POST['doctore'];
             $dniPaciente=$_POST['paciente'];
@@ -211,14 +209,13 @@ class Citas
         }
         $fecha=$_POST['fecha'];
         $sql="DELETE FROM cita where doctor='$dniDoctor' and paciente='$dniPaciente' and fecha='$fecha'";
-        $mysqli->query($sql);   
+        $this->mysqli->query($sql);   
         return "exito";
     }
     function mostrarUnaCita()
     {
-        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $sql = "SELECT * FROM cita where id = '{$this->id}';";
-        $resultado = $mysqli->query($sql);
+        $resultado = $this->mysqli->query($sql);
         $datos = array();
         while ($row = $resultado->fetch_assoc()) {
             $datos[] = $row;
@@ -227,9 +224,8 @@ class Citas
     }
     function mostrarCitas()
     {
-        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $sql = "SELECT * FROM cita;";
-        $resultado = $mysqli->query($sql);
+        $resultado = $this->mysqli->query($sql);
         $datos = array();
         while ($row = $resultado->fetch_assoc()) {
             $datos[] = $row;
@@ -244,7 +240,7 @@ class Citas
 
         $i = 0;
 
-        $visibleColumns = ['paciente','doctor','fecha','E','B'];
+        $visibleColumns = ['paciente','doctor','fecha','diagnostico','E','B'];
         $bool = false;
 
         foreach ($columns as $key => $value) {
@@ -268,6 +264,7 @@ class Citas
     {   
         $dni=$_SESSION['dni'];
         $dia=date("Y-m-d H:i:s");
+        
         if($_SESSION['rol']=='Paciente'){
             $sql = "SELECT
             cita.paciente AS paciente_dni,
@@ -304,9 +301,8 @@ class Citas
         else{
             $datos = array();
             while ($row = $resultado->fetch_assoc()) {
-                if(strtotime($row['fecha']) > strtotime(date("Y-m-d H:i:s"))){
                         $datos[]=$row;               
-                }
+                
             } 
             foreach ($datos as $key => $value) { 
                 $fecha= $value['fecha'];
@@ -343,7 +339,6 @@ class Citas
     }
     function mostrarPasCitas()
     {   
-        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
         $dia=date("Y-m-d H:i:s");
         $dni=$_SESSION['dni']; 
         if($_SESSION['rol']=='Paciente'){
@@ -358,7 +353,7 @@ class Citas
             cita
             INNER JOIN usuario ON cita.paciente = usuario.dni
             INNER JOIN doctor ON cita.doctor = doctor.dni
-          where cita.usuario='$dni' and fecha<'$dia'"; 
+          where cita.paciente='$dni' and fecha<'$dia'"; 
         } 
         else if($_SESSION['rol']=='Doctor'){
             $sql = "SELECT
@@ -374,16 +369,16 @@ class Citas
             INNER JOIN doctor ON cita.doctor = doctor.dni
           where cita.doctor='$dni' and fecha<'$dia'"; 
         } 
-        $resultado = $mysqli->query($sql);
+   
+        $resultado = $this->mysqli->query($sql);
         if (mysqli_num_rows($resultado) == 0){
             return "vacio";
         }
         $datos = array();
         while ($row = $resultado->fetch_assoc()) {
-            if(strtotime($row['fecha']) < strtotime(date("Y-m-d H:i:s"))){
                 $datos[]=$row;
-            }
-        }  
+            
+        }   
         $columns = array_keys($datos[0]);
         
 
@@ -409,11 +404,10 @@ class Citas
         return $datos;
     }
     function citaActual(){
-        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
-            $dia=date("Y-m-d H:i:s");
+            $dni=$_SESSION['dni'];
+            $dia=date("Y-m-d H:i:s"); 
             $dia1=date("Y-m-d H:i:s", strtotime('-30 minutes', strtotime($dia)));
             $dia2=date("Y-m-d H:i:s", strtotime('+30 minutes', strtotime($dia)));
-            $dni=$_SESSION['dni'];
             $sql = "SELECT
             cita.paciente AS paciente_dni,
             usuario.nombre AS paciente,
@@ -425,29 +419,31 @@ class Citas
             cita
             INNER JOIN usuario ON cita.paciente = usuario.dni
             INNER JOIN doctor ON cita.doctor = doctor.dni
-          where cita.doctor='$dni' and fecha between '$dia1' and '$dia2';";    
-            $resultado = $mysqli->query($sql);
+          where cita.doctor='$dni' and fecha between '$dia1' and '$dia2';";  
+
+            $resultado = $this->mysqli->query($sql);
             if (mysqli_num_rows($resultado) == 0){
                 return "vacio";
-            }
+            }   
             $datos = array();
             while ($row = $resultado->fetch_assoc()) {
-                if(strtotime($row['fecha']) < strtotime(date("Y-m-d H:i:s"))){
                     $datos[]=$row;
-                }
+                
             }  
             $columns = array_keys($datos[0]);
             foreach ($datos as $key => $value) { 
-                $editar = array("Escribir diagnostico" => "<button type='button' class='btn btn-sm btn-link edicion' id='{$value['dni']}' data-bs-toggle='modal' data-bs-target='#modalDiagnostico' ><i class='bx bxs-edit'></i></button>");
+                $cosas=$value['doctor_dni'].'y'.$value['paciente_dni'].'y'.$value['fecha'];
+                $editar = array("Editar diagnostico" => "<button type='button' class='btn btn-sm btn-link edicion' onclick='modificar()' id='{$cosas}'  data-bs-toggle='modal' data-bs-target='#modalDiagnostico' ><i class='bx bxs-edit'></i></button>");
                 $datos[$key] = array_merge( $editar, $value);
             }  
+
             $columns = array_keys($datos[0]);
             
            
     
             $i = 0;
     
-            $visibleColumns = ['Escribir diagnostico','paciente','doctor','fecha','diagnostico'];
+            $visibleColumns = ['Editar diagnostico','paciente','doctor','fecha','diagnostico'];
             $bool = false;
     
             foreach ($columns as $key => $value) {
@@ -467,21 +463,10 @@ class Citas
             return $datos;
         }
     
-    function cambiarCita()//Antes hay que mostrar citas disponibles 
+    function modificarCita($doctor,$paciente,$fecha,$diagnostico)//tengo que pasarle un parametro anterior
     {
-        $mysqli =new mysqli('eu-cdbr-west-03.cleardb.net', 'b779dddf5208ba', 'c33f6bda', 'heroku_319148137defb00');
-        $sql = "UPDATE cita SET paciente = '{$this->paciente}'
-            WHERE fecha= '{$this->fecha}' and doctor = '{$this->doctor}'";
-        $mysqli->query($sql);
-        return "exito";
+
+            $sql = "UPDATE cita SET paciente = '{$paciente}', 
+            doctor = '{$doctor}', fecha = '{$fecha}',diagnostico='$diagnostico'
+            WHERE  paciente = '{$paciente}' and doctor='{$doctor}' and fecha='{$fecha}';"; 
     }
-    function modificarCita()//tengo que pasarle un parametro anterior
-    {
-            $sql = "UPDATE cita SET paciente = '{$this->paciente}', 
-            doctor = '{$this->doctor}', fecha = '{$this->fecha}'}', diagnostico='{$this->diagnostico}'
-            WHERE  paciente = '{$this->paciente1}' and doctor='{$this->doctor1}' and fecha='{$this->fecha1}'
-            and diagnostico='$this->diagnostico1'";  
-            $resultado = $this->mysqli->query($sql);
-            return "exito";
-    }
-}
