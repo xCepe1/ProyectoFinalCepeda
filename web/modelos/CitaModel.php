@@ -32,18 +32,20 @@ class Citas
     public $fecha1;
     public $diagnostico1;
     public $accion="Citas";//es para identificarlo
+
     
 
     public function __construct($tipo='',$datepicker="", $diagnostico="", $paciente1='',
-     $doctor1='', $fecha1='', $diagnostico1='')
+     $doctor1='', $fecha1='', $diagnostico1='',$mysqli='')
     { 
+        $con = new Connection();
+        $this->mysqli = $con->con();
         $this->diagnostico=$diagnostico;
         $this->doctor1=$doctor1;
         $this->paciente1=$paciente1;
         $this->fecha1=$fecha1;
         $this->diagnostico1=$diagnostico1;
-        $con = new Connection();
-        $this->mysqli = $con->con();
+       
         
     if(isset($_POST['muestra'])){
         if($_POST['muestra']=='proxima'){
@@ -307,7 +309,7 @@ class Citas
             } 
             foreach ($datos as $key => $value) { 
                 $fecha= $value['fecha'];
-                $doctor=$value['doctor'];
+                $doctor=$value['doctor_dni'];
                 $anular = array("Anular" => "<button type='button' onclick='anularCita(this.id,`$fecha`)' class='btn btn-sm btn-link edicion' id=`$doctor` '><i class='bx bxs-checkbox-minus'></i></button>");
     
                 $datos[$key] = array_merge($anular, $value);
@@ -317,7 +319,7 @@ class Citas
     
             $i = 0;
     
-                        if($_SESSION['rol']=='Doctor'){
+            if($_SESSION['rol']=='Doctor'){
                 $visibleColumns = ['doctor','paciente','fecha', 'diagnostico'];
             }
             else{
@@ -476,4 +478,6 @@ class Citas
             doctor = '{$doctor}', fecha = '{$fecha}',diagnostico='$diagnostico'
             WHERE  paciente = '{$paciente}' and doctor='{$doctor}' and fecha='{$fecha}';"; 
     }
+
 }
+         
