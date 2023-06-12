@@ -294,7 +294,7 @@ class Citas
             INNER JOIN doctor ON cita.doctor = doctor.dni
           where cita.doctor='$dni' and fecha>'$dia'"; 
         }
-        $resultado = $mysqli->query($sql);  
+        $resultado = $this->mysqli->query($sql);  
         if (mysqli_num_rows($resultado) == 0){
             return "vacio";
         }
@@ -470,3 +470,4 @@ class Citas
             doctor = '{$doctor}', fecha = '{$fecha}',diagnostico='$diagnostico'
             WHERE  paciente = '{$paciente}' and doctor='{$doctor}' and fecha='{$fecha}';"; 
     }
+}
