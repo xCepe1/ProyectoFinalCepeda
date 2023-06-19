@@ -98,7 +98,6 @@ footer{
 }
 .redes{
     flex: 1!important;
-    margin: 0 40px!important;
 }
 .sociales{
     max-width: 100px!important;
@@ -141,3 +140,21 @@ ul.cmContentList, ul.cmContentMultipleList {
     padding: 2rem;
     background-color: #a4f2f9;
 }
+
+@media (min-width: 768px) {
+    .redes {
+      margin: 0 20px!important;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .redes {
+      margin: 0 30px!important;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .redes {
+      margin: 0 40px!important;
+    }
+  }
