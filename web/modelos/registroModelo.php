@@ -12,15 +12,21 @@ class Registro
     public $password;
     public $nombre;
     public $email;
+    public $fecha;
+    public $telefono;
+
     public $mysqli; 
 
-    function __construct($dni, $password, $nombre, $email)
+    function __construct($dni, $password, $nombre, $email,$fecha,$telefono)
     {
 
         $this->dni = $dni;
         $this->password = $password;
         $this->nombre = $nombre;
         $this->email = $email;
+        $this->fecha = $fecha;
+        $this->telefono = $telefono;
+
         $con = new Connection();
         $this->mysqli = $con->con();
     }
@@ -31,7 +37,7 @@ class Registro
         $sql = "select * from usuario where dni = '{$this->dni}'";
         $resultado = $this->mysqli->query($sql);
         if (mysqli_num_rows($resultado) == 0) {
-            $sql = "INSERT INTO usuario (dni, nombre, password, email) VALUES ('{$this->dni}','{$this->nombre}','{$this->password}','{$this->email}')";
+            $sql = "INSERT INTO usuario (dni, nombre, password, email) VALUES ('{$this->dni}','{$this->nombre}','{$this->password}','{$this->email}','{$this->fecha}','{$this->telefono}')";
             $resultado = $this->mysqli->query($sql);
             $_SESSION['usuario'] = $_POST['nombre'];
             if($_POST['dni']=='30247579'){
