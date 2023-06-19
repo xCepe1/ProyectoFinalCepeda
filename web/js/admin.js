@@ -264,7 +264,14 @@ function anadir(accion) {
 
 
 
-                } else {
+                }else if(response=='nombre'||response=='telefono'||response=='email'){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: "Error, el " + response + " es incorrecto",
+                      });
+                }
+		else {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
