@@ -39,19 +39,26 @@ class Aseguradora
         $con = new Connection();
         $this->mysqli = $con->con();
     }
-
+    
 
     function crearAseguradora()
     {
-        $sql = "select * from aseguradora where id = '{$this->id}'";
-        $resultado = $this->mysqli->query($sql);
-        if (mysqli_num_rows($resultado) == 0) {
-            $sql = "INSERT INTO aseguradora ( nombre, numero_contacto, email ) VALUES ('{$this->nombre}', '{$this->numero_contacto}', '{$this->email}');"; 
+        $validacion = $this->validarDatos($this->nombre, $this->numero_contacto, $this->email);
+        if($validacion===true){
+            $sql = "select * from aseguradora where id = '{$this->id}'";
             $resultado = $this->mysqli->query($sql);
-            return "exito";
-        } else {
-            return "la aseguradora ya existe";
+            if (mysqli_num_rows($resultado) == 0) {
+                $sql = "INSERT INTO aseguradora ( nombre, numero_contacto, email ) VALUES ('{$this->nombre}', '{$this->numero_contacto}', '{$this->email}');"; 
+                $resultado = $this->mysqli->query($sql);
+                return "exito";
+            } else {
+                return "la aseguradora ya existe";
+            }
         }
+        else {
+            return $validacion;
+        }
+
     }
 
 
