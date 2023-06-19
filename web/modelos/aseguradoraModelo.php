@@ -41,6 +41,22 @@ class Aseguradora
     }
     
 
+        private function validarDatos( $nombre, $numero_contacto, $email) {
+        // Realizar las comprobaciones necesarias
+        
+        if (empty($nombre)) {
+            return "nombre";
+        }
+        
+        if (!preg_match('/^[0-9]{1,9}$/', $numero_contacto)) {
+            return "telefono";
+        }
+        
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return "email";
+        }
+        return true;
+    }
     function crearAseguradora()
     {
         $validacion = $this->validarDatos($this->nombre, $this->numero_contacto, $this->email);
